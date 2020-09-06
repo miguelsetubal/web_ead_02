@@ -1,0 +1,38 @@
+body.center-form {
+    min-height: 50vh;
+  }
+
+  div.center-form {
+    position: relative;
+    min-height: 80vh;
+  }
+
+  div.center-form > form {
+    position: absolute;
+    top: 40%;
+    left: 60%;
+    transform: translateY(-50%) translateX(-50%);
+  }
+
+.button {
+    background-color: grey;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+
+   
+  .checkbox{
+    display: flex;
+    flex-flow: row wrap;
+    }
+    .checkbox-50 {
+        width: 50%;
+    }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen" />
+  <title>Atividade WEB EAD 02</title>
+  <script src="js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app" class="card-body">
+    <div class="col-md-12 text-center">
+      <img src="img/logo.jpg" width="10%"><br>
+      <label><strong>Nome:</strong></label>
+      <input v-model="cliente.name" class="col-md-6 mb-3">
+      <br>
+      <label><strong>Email:</strong></label>
+      <input type="email" v-model="cliente.email" class="col-md-6 mb-3">
+      <br>
+      <label><strong>Date of birth:</strong></label>
+      <input type="date" v-model="cliente.date" class="col-md-6 mb-3">
+      <br>
+      <button class="mt-3 mb-3 btn btn-primary" @click="add()">Adicionar</button>
+      <input type="reset" class="mt-3 mb-3 btn btn-info" value="CLEAR">
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Data</th>
+      </thead>
+      <tbody>
+        <tr v-for="item in list">
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.name }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      cliente: {
+        id: 0,
+        name: null,
+        email: null,
+        date: null
+      },
+      index: null,
+      list: []
+    },
+    mounted() {
+      const clientes = JSON.parse(localStorage.getItem('clientes'))
+      this.list = clientes ? clientes : []
+    },
+    methods: {
+      add() {
+        if (this.cliente.id === 0) {
+          this.cliente.id = this.list.length + 1
+          this.list.push(this.cliente)
+
+        } else {
+          this.list[this.index] = this.cliente
+        }
+        localStorage.setItem('clientes', JSON.stringify(this.list))
+        this.cliente = { id: 0, name: null, email: null, date: null }
+      }
+    }
+
+  })
+</script>
